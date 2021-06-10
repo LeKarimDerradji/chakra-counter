@@ -6,6 +6,7 @@ function App() {
   const [web3State, login] = useContext(Web3Context)
   const [ethBalance, setEthBalance] = useState(0)
   const [address, setAddress] = useState(ethers.constants.AddressZero)
+  const [eth2Send, setEth2Send] = useState(0)
 
   const handleClickGetBalance = async () => {
     try {
@@ -15,6 +16,8 @@ function App() {
       console.log(e)
     }
   }
+
+  const handleClickSend = async () => {}
 
   return (
     <>
@@ -42,6 +45,15 @@ function App() {
       <p>
         Balance of {address}: {ethBalance} ETHER
       </p>
+      <label htmlFor="eth2send">send to: {address}</label>
+      <input
+        id="eth2Send"
+        type="text"
+        placeholder="ether ammount"
+        value={eth2Send}
+        onChange={(event) => setEth2Send(event.target.value)}
+      />
+      <button onClick={handleClickSend}>send</button>
     </>
   )
 }
