@@ -1,8 +1,16 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Web3Context } from 'web3-hooks'
+import { ethers } from 'ethers'
 
 function App() {
   const [web3State, login] = useContext(Web3Context)
+  const [ethBalance, setEthBalance] = useState(0)
+  const [address, setAddress] = useState(ethers.constants.AddressZero)
+
+  const handleClickGetBalance = async () => {
+    const balance = await web3State.provider.getBalance(address)
+    setEthBalance(ethers.utils.formatEther(balance))
+  }
 
   return (
     <>
@@ -18,6 +26,18 @@ function App() {
       <p>Network name: {web3State.networkName}</p>
       <p>account: {web3State.account}</p>
       <p>Balance: {web3State.balance}</p>
+      <label htmlFor="balanceOf">Balance of:</label>
+      <input
+        id="balanceOf"
+        type="text"
+        value={address}
+        placeholder="ethereum address"
+        onChange={(event) => setAddress(event.target.value)}
+      />
+      <button onClick={handleClickGetBalance}>get balance</button>
+      <p>
+        Balance of {address}: {ethBalance} ETHER
+      </p>
     </>
   )
 }
