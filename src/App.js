@@ -17,7 +17,14 @@ function App() {
     }
   }
 
-  const handleClickSend = async () => {}
+  const handleClickSend = async () => {
+    const weiAmount = ethers.utils.parseEther(eth2Send)
+    try {
+      await web3State.signer.sendTransaction({ to: address, value: weiAmount })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <>
