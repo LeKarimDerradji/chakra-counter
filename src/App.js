@@ -8,8 +8,12 @@ function App() {
   const [address, setAddress] = useState(ethers.constants.AddressZero)
 
   const handleClickGetBalance = async () => {
-    const balance = await web3State.provider.getBalance(address)
-    setEthBalance(ethers.utils.formatEther(balance))
+    try {
+      const balance = await web3State.provider.getBalance(address)
+      setEthBalance(ethers.utils.formatEther(balance))
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
