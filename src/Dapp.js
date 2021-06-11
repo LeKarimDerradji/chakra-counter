@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { Web3Context } from 'web3-hooks'
 import { ethers } from 'ethers'
+import Counter from './Counter'
 
 function Dapp() {
   const [web3State, login] = useContext(Web3Context)
@@ -67,6 +68,7 @@ function Dapp() {
       />
       <button onClick={handleClickSend}>send</button>
       <hr />
+      <Counter />
     </>
   )
 }
