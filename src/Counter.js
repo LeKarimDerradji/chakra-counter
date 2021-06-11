@@ -14,11 +14,29 @@ function Counter() {
     }
   }
 
+  const handleClickIncrement = async () => {
+    try {
+      await counter.increment()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const handleClickDecrement = async () => {
+    try {
+      await counter.decrement()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <h1>Counter</h1>
       <p>count: {count.toString()}</p>
       <button onClick={handleClickGet}>get count</button>
+      <button onClick={handleClickIncrement}>+</button>
+      <button onClick={handleClickDecrement}>-</button>
     </>
   )
 }
