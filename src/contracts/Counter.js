@@ -1,4 +1,5 @@
-export const counterAddress = '0x8893D66428130F410C00208A110784ad7f701854'
+// Deployed on Rinkeby
+export const counterAddress = '0x1a0f3Db3B338F9425C02b6321c6A2d647964c331'
 
 export const counterAbi = [
   {
