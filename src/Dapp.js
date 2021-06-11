@@ -66,6 +66,7 @@ function Dapp() {
         onChange={(event) => setEth2Send(event.target.value)}
       />
       <button onClick={handleClickSend}>send</button>
+      <hr />
     </>
   )
 }
