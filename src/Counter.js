@@ -1,8 +1,11 @@
 import { useState, useContext } from 'react'
 import { Web3Context } from 'web3-hooks'
+import {Link} from 'react-router-dom'
 import { CounterContext } from './App'
+import {Box, Text, Button, VStack} from "@chakra-ui/react";
 
 function Counter() {
+
   const [web3State, _] = useContext(Web3Context)
   const counter = useContext(CounterContext)
   const [count, setCount] = useState(0)
@@ -38,23 +41,32 @@ function Counter() {
     }
   }
 
+  console.log(web3State.chainId)
+
   return (
+    <Box w='50%' mx='auto'>
     <>
-      {counter && web3State.chainId === 4 ? (
+      {web3State.chainId === 4 ? (
         <>
-          <p>Count: {count.toString()}</p>
-          <button onClick={handleClickGet}>get count</button>
-          <button onClick={handleClickIncrement}>
+        <VStack spacing={4}>
+        <Box w='50%' mx='auto' display='flex' flexDirection='column' marginTop='10' spacing="30px">
+          <Text>Count: {count.toString()}</Text>
+          <Button onClick={handleClickGet}>get count</Button>
+          <Button onClick={handleClickIncrement}>
             <strong>+</strong>
-          </button>
-          <button onClick={handleClickDecrement}>
+          </Button>
+          <Button onClick={handleClickDecrement}>
             <strong>-</strong>
-          </button>
+          </Button>
+          </Box>
+          <Link to={'/'}>Home</Link>
+          </VStack>
         </>
       ) : (
-        <p>CAN NOT INIT CONTRACT</p>
+        <Text color='red'>CAN NOT INIT CONTRACT PLEASE SWITCH TO RINKEBY</Text>
       )}
-    </>
+  </>
+  </Box>
   )
 }
 
